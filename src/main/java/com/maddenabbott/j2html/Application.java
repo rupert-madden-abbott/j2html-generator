@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.maddenabbott.j2html.generate.J2HtmlFormatter;
 import com.maddenabbott.j2html.generate.J2HtmlGenerator;
 
 public class Application {
@@ -13,7 +14,14 @@ public class Application {
       System.exit(1);
     }
 
-    System.out.println(new J2HtmlGenerator().generate(readFile(args[0])));
+    String code = new J2HtmlGenerator().generate(readFile(args[0]));
+
+    try {
+      System.out.println(new J2HtmlFormatter().format(code));
+    } catch (IllegalArgumentException e) {
+      System.err.println("Unable to format code. Here is the unformatted result.");
+      System.out.println(code);
+    }
   }
 
   private static String readFile(String path) {

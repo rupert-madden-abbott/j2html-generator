@@ -19,9 +19,6 @@ Convert any HTML fragment into valid j2html code.
 
 Result will be output to stdout.
 
-Output is just on a single line, unformatted. Your IDE can do a better job of formatting it
-than I can.
-
 ### Library
 
     String result = new J2HtmlGenerator().generate("<p id=\"hello\">Hello, World!</p>");
@@ -29,3 +26,7 @@ than I can.
 Output:
 
     p("Hello, World!").attr("id", "hello")
+    
+The output can also be formatted:
+
+    String formattedCode = new J2HtmlFormatter().format(code);
